@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -35,6 +36,9 @@ public class PetController {
     @Autowired
     private PetRepository petRepository;
 
+    // Path for image storage (absolute, no folder duplication)
+    private static final String IMAGE_DIR = "C:/Users/sduna/Documents/GitHub/furbuddy/demo/demo/src/main/resources/static/images";
+
     // Show all pets
     @GetMapping
     public List<Pet> getAllPets() {
@@ -43,21 +47,30 @@ public class PetController {
 
     // Add a pet
     @PostMapping(consumes = {"multipart/form-data"})
-    public Pet createPet(
-        @RequestParam("ownerName") String ownerName,
-        @RequestParam("mobileNumber") String mobileNumber,
-        @RequestParam("address") String address,
-        @RequestParam("petType") String petType,
-        @RequestParam("breed") String breed,
-        @RequestParam("age") int age,
-        @RequestParam("petImage") MultipartFile petImage
+    public ResponseEntity<?> addPet(
+        @RequestParam String ownerName,
+        @RequestParam String mobileNumber,
+        @RequestParam String address,
+        @RequestParam String petType,
+        @RequestParam String breed,
+        @RequestParam int age,
+        @RequestParam String gender, // Add this parameter
+        @RequestParam MultipartFile petImage
     ) {
+        Pet pet = new Pet();
+        pet.setOwnerName(ownerName);
+        pet.setMobileNumber(mobileNumber);
+        pet.setAddress(address);
+        pet.setPetType(petType);
+        pet.setBreed(breed);
+        pet.setAge(age);
+        pet.setGender(gender); // Set gender
         String fileName = petImage.getOriginalFilename();
         if (fileName == null || fileName.trim().isEmpty()) {
             throw new RuntimeException("No image file provided");
         }
         try {
-            Path imagesDir = Paths.get(System.getProperty("user.dir"), "furbuddy", "demo", "demo", "src", "main", "resources", "static", "images");
+            Path imagesDir = Paths.get(IMAGE_DIR);
             if (!Files.exists(imagesDir)) {
                 Files.createDirectories(imagesDir);
             }
@@ -79,15 +92,8 @@ public class PetController {
             Files.copy(petImage.getInputStream(), imagePath);
             System.out.println("Saved image: " + imagePath.toAbsolutePath() + ", size: " + petImage.getSize());
 
-            Pet pet = new Pet();
-            pet.setOwnerName(ownerName);
-            pet.setMobileNumber(mobileNumber);
-            pet.setAddress(address);
-            pet.setPetType(petType);
-            pet.setBreed(breed);
-            pet.setAge(age);
             pet.setPetImage(fileName);
-            return petRepository.save(pet);
+            return ResponseEntity.ok(petRepository.save(pet));
         } catch (java.nio.file.FileAlreadyExistsException e) {
             throw new RuntimeException("File already exists: " + fileName, e);
         } catch (java.io.IOException e) {
@@ -154,7 +160,7 @@ public class PetController {
 
     @GetMapping("/images/{filename:.+}")
     public ResponseEntity<Resource> getImage(@PathVariable String filename) throws IOException {
-        Path imagePath = Paths.get("uploads/images/").resolve(filename);
+        Path imagePath = Paths.get(IMAGE_DIR).resolve(filename);
         Resource resource = new UrlResource(imagePath.toUri());
         if (resource.exists() || resource.isReadable()) {
             return ResponseEntity.ok()

@@ -10,7 +10,8 @@ const Donate = () => {
     petType: '',
     petBreed: '',
     petImage: null,
-    age: ''
+    age: '',
+    gender: '', // Add gender field
   });
 
   const handleChange = (e) => {
@@ -31,6 +32,7 @@ const Donate = () => {
       data.append('petType', formData.petType);
       data.append('breed', formData.petBreed);
       data.append('age', formData.age);
+      data.append('gender', formData.gender); // Add gender to form data
       data.append('petImage', formData.petImage);
 
       await axios.post('http://localhost:8080/api/pets', data, {
@@ -44,7 +46,8 @@ const Donate = () => {
         petType: '',
         petBreed: '',
         petImage: null,
-        age: ''
+        age: '',
+        gender: '', // Reset gender
       });
     } catch (error) {
       alert('Failed to submit donation. Please try again.');
@@ -92,6 +95,14 @@ const Donate = () => {
         <div className="form-group">
           <label>Pet Age *</label>
           <input type="number" name="age" min="0" required onChange={handleChange} value={formData.age} />
+        </div>
+        <div className="form-group">
+          <label>Gender *</label>
+          <select name="gender" required onChange={handleChange} value={formData.gender}>
+            <option value="">--Select--</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
         </div>
         <button type="submit">Submit</button>
       </form>

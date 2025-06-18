@@ -33,6 +33,8 @@ public class Pet {
 
     private int age;
 
+    private String gender; // Add this field
+
     public Long getId() {
         return id;
     }
@@ -101,7 +103,15 @@ public class Pet {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setAge(int age2) {
+        this.age = age2;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
