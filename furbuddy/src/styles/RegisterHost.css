@@ -1,0 +1,44 @@
+.register-host-container {
+  padding: 20px;
+}
+
+.register-host-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register-host-form {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-host-form .form-group {
+  margin-bottom: 15px;
+}
+
+.register-host-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.register-host-form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.register-host-form button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.register-host-form button:hover {
+  background-color: #0056b3;
+}

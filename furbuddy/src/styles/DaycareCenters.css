@@ -1,0 +1,43 @@
+.daycare-centers-container {
+  padding: 20px;
+}
+
+.daycare-centers-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.daycare-centers-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.daycare-centers-container li {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.daycare-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.daycare-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.daycare-card h3 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.daycare-card p {
+  margin: 5px 0;
+}
