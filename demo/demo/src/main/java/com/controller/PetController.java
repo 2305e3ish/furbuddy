@@ -27,13 +27,16 @@ import org.springframework.web.multipart.MultipartFile;
 import com.entity.Pet;
 import com.repository.PetRepository;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3001")
 @RestController
 @RequestMapping("/api/pets")
 public class PetController {
 
     @Autowired
     private PetRepository petRepository;
+
+    // Path for image storage (absolute, no folder duplication)
+    private static final String IMAGE_DIR = "C:/Users/ishan/OneDrive/Documents/furbuddy/demo/demo/src/main/resources/static/images";
 
     // Show all pets
     @GetMapping
@@ -57,7 +60,7 @@ public class PetController {
             throw new RuntimeException("No image file provided");
         }
         try {
-            Path imagesDir = Paths.get(System.getProperty("user.dir"), "furbuddy", "demo", "demo", "src", "main", "resources", "static", "images");
+            Path imagesDir = Paths.get(IMAGE_DIR);
             if (!Files.exists(imagesDir)) {
                 Files.createDirectories(imagesDir);
             }
@@ -154,7 +157,7 @@ public class PetController {
 
     @GetMapping("/images/{filename:.+}")
     public ResponseEntity<Resource> getImage(@PathVariable String filename) throws IOException {
-        Path imagePath = Paths.get("uploads/images/").resolve(filename);
+        Path imagePath = Paths.get(IMAGE_DIR).resolve(filename);
         Resource resource = new UrlResource(imagePath.toUri());
         if (resource.exists() || resource.isReadable()) {
             return ResponseEntity.ok()
