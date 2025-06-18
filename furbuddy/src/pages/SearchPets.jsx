@@ -72,7 +72,7 @@ const SearchPets = () => {
           <option value="ownerName">Owner</option>
           <option value="mobileNumber">Mobile</option>
           <option value="address">Address</option>
-          <option value="name">Name</option>
+          
           <option value="petImage">Image</option>
           <option value="age">Age</option>
         </select>
@@ -94,7 +94,7 @@ const SearchPets = () => {
               <th>Owner</th>
               <th>Mobile</th>
               <th>Address</th>
-              <th>Name</th>
+              
               <th>Age</th>
             </tr>
           </thead>
@@ -109,7 +109,7 @@ const SearchPets = () => {
                 <td>{pet.ownerName}</td>
                 <td>{pet.mobileNumber}</td>
                 <td>{pet.address}</td>
-                <td>{pet.name}</td>
+                
                 <td>{pet.age}</td>
               </tr>
             ))}
