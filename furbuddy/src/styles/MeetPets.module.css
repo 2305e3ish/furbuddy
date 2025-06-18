@@ -1,0 +1,41 @@
+.meetPets {
+    padding: 2rem;
+    background-color: #fefefe;
+    text-align: center;
+  }
+  
+  .meetPets h2 {
+    color: #ff7a59;
+    margin-bottom: 2rem;
+  }
+  
+  .petGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  
+  .petCard {
+    background-color: #fff;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    width: 220px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+  }
+  
+  .petCard img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .petCard h3 {
+    color: #333;
+    margin: 0.5rem 0;
+  }
+  

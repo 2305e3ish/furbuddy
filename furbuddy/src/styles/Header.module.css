@@ -1,0 +1,102 @@
+.header {
+    background-color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ffe8d6;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .logoContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff7a59;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .nav a {
+    font-weight: 500;
+    color: #333;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  
+  .nav a:hover {
+    color: #ff7a59;
+  }
+  
+  .nav a::after {
+    content: '';
+    display: block;
+    width: 0%;
+    height: 2px;
+    background: #ff7a59;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+  }
+  
+  .nav a:hover::after {
+    width: 100%;
+  }
+  
+  .logoutButton {
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .profileCircle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #bbb;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+  }
+  
+  .profileCircle:hover {
+    box-shadow: 0 0 0 2px #888;
+  }
+  
+  @media (max-width: 768px) {
+    .nav {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+  
+    .title {
+      font-size: 1.2rem;
+    }
+  }

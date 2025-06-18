@@ -1,0 +1,19 @@
+.about {
+    padding: 2rem;
+    background-color: #fff8f1;
+    text-align: center;
+  }
+  
+  .about h2 {
+    color: #ff7a59;
+    margin-bottom: 1rem;
+  }
+  
+  .about p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+
+#about-us {
+  scroll-margin-top: 80px; /* Adjust this value to match your navbar height */
+}

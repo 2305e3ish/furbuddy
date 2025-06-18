@@ -1,0 +1,65 @@
+/* SearchPets.css */
+.search-page {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff9f4;
+    border-radius: 10px;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #222;
+  }
+  
+  .search-box {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+  }
+  
+  .search-box:hover {
+    border-color: #f28500;
+    background-color: #fff2e0;
+  }
+  
+  .pet-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pet-table th, .pet-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .pet-table th {
+    background-color: #f7f7f7;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .pet-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .no-results {
+    text-align: center;
+    color: #777;
+    margin-top: 20px;
+    font-size: 18px;
+  }
