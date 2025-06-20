@@ -2,15 +2,16 @@ import React, { useEffect, useState, useRef } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, push, onValue, serverTimestamp } from 'firebase/database';
 
-// TODO: Replace with your Firebase config
+// Firebase config from your Firebase Console
 const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_AUTH_DOMAIN',
-  databaseURL: 'YOUR_DATABASE_URL',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_STORAGE_BUCKET',
-  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-  appId: 'YOUR_APP_ID',
+  apiKey: "AIzaSyADMF211TyJKNrGaeRazRNaiS-nq4WTkE0",
+  authDomain: "furbuddy-7df01.firebaseapp.com",
+  databaseURL: "https://furbuddy-7df01-default-rtdb.asia-southeast1.firebasedatabase.app", // Add this line for Realtime Database
+  projectId: "furbuddy-7df01",
+  storageBucket: "furbuddy-7df01.appspot.com",
+  messagingSenderId: "100338818226",
+  appId: "1:100338818226:web:6f160a0c6554926fe2bdab",
+  measurementId: "G-CRNDKBLPD4"
 };
 
 const app = initializeApp(firebaseConfig);
