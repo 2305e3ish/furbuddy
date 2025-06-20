@@ -10,6 +10,9 @@ import Hospitals from './pages/Hospitals';
 import SearchPets from './pages/SearchPets';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import PetStay from './pages/PetStay';
+import DaycareCenters from './pages/DaycareCenters';
+import GroupChat from './pages/GroupChat';
 import './App.css'; // ensure this is imported for layout styles
 
 export default function App() {
@@ -27,6 +30,9 @@ export default function App() {
             <Route path="/hospitals" element={<Hospitals />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/pet-stay" element={<PetStay />} />
+            <Route path="/daycare-centers" element={<DaycareCenters />} />
+            <Route path="/groupchat" element={<GroupChat />} />
           </Routes>
         </div>
         <Footer />

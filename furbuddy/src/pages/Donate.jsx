@@ -8,7 +8,7 @@ const Donate = () => {
     mobileNumber: '',
     address: '',
     petType: '',
-    petBreed: '',
+    breed: '', // changed from petBreed
     petImage: null,
     age: '',
     gender: '', // Add gender field
@@ -30,7 +30,7 @@ const Donate = () => {
       data.append('mobileNumber', formData.mobileNumber);
       data.append('address', formData.address);
       data.append('petType', formData.petType);
-      data.append('breed', formData.petBreed);
+      data.append('breed', formData.breed); // use breed
       data.append('age', formData.age);
       data.append('gender', formData.gender); // Add gender to form data
       data.append('petImage', formData.petImage);
@@ -44,7 +44,7 @@ const Donate = () => {
         mobileNumber: '',
         address: '',
         petType: '',
-        petBreed: '',
+        breed: '', // changed from petBreed
         petImage: null,
         age: '',
         gender: '', // Reset gender
@@ -86,7 +86,7 @@ const Donate = () => {
         </div>
         <div className="form-group">
           <label>Pet Breed *</label>
-          <input type="text" name="petBreed" required onChange={handleChange} value={formData.petBreed} />
+          <input type="text" name="breed" required onChange={handleChange} value={formData.breed} />
         </div>
         <div className="form-group">
           <label>Upload Pet Image *</label>
