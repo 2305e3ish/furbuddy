@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -28,7 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.entity.Pet;
 import com.repository.PetRepository;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3001")
 @RestController
 @RequestMapping("/api/pets")
 public class PetController {

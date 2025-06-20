@@ -18,9 +18,6 @@ public class PetStayRequest {
     @ManyToOne
     private User owner;
 
-    @ManyToOne
-    private HostProfile host;
-
     private String startDate;
     private String endDate;
     private String status;
@@ -50,14 +47,6 @@ public class PetStayRequest {
 
     public void setOwner(User owner) {
         this.owner = owner;
-    }
-
-    public HostProfile getHost() {
-        return host;
-    }
-
-    public void setHost(HostProfile host) {
-        this.host = host;
     }
 
     public String getStartDate() {

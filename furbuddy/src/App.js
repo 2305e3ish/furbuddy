@@ -11,6 +11,7 @@ import SearchPets from './pages/SearchPets';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import PetStay from './pages/PetStay';
+import DaycareCenters from './pages/DaycareCenters';
 
 import './App.css'; // ensure this is imported for layout styles
 
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/pet-stay" element={<PetStay />} />
+            <Route path="/daycare-centers" element={<DaycareCenters />} />
             
           </Routes>
         </div>
