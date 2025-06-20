@@ -46,11 +46,8 @@ export default function Header() {
             <Link to="/donate">Donate</Link>
             <Link to="/hospitals">Pet Hospitals</Link>
             <Link to="/support-us">Support Us</Link>
-<<<<<<< Updated upstream
             <Link to="/pet-stay">Pet Stay</Link>
-=======
             <Link to="/groupchat">Community Chat</Link>
->>>>>>> Stashed changes
             <button onClick={handleLogout} className={styles.logoutButton} style={{background:'none',border:'none',color:'inherit',cursor:'pointer',padding:0}}>Logout</button>
             <span onClick={() => navigate('/profile')} className={styles.profileCircle} title="Profile" style={{marginLeft:'0.5rem'}}>
               <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#bbb" /></svg>
