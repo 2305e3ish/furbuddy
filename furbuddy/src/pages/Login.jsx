@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Auth.module.css";
+import Popup from "../components/Popup";
 
 export default function Login() {
   const {
@@ -11,6 +12,7 @@ export default function Login() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+  const [popup, setPopup] = useState({ open: false, message: "" });
 
   const onSubmit = async (data) => {
     try {
@@ -21,13 +23,16 @@ export default function Login() {
       // Save user email to localStorage and sessionStorage for profile page
       localStorage.setItem('userEmail', data.email);
       sessionStorage.setItem('userEmail', data.email);
-      alert(response.data);
-      navigate("/profile");
+      setPopup({ open: true, message: response.data || "Login successful!" });
+      setTimeout(() => {
+        setPopup({ open: false, message: "" });
+        navigate("/profile");
+      }, 1200);
     } catch (error) {
       if (error.response && error.response.data) {
-        alert(error.response.data);
+        setPopup({ open: true, message: error.response.data });
       } else {
-        alert("Server is not reachable. Please try again later.");
+        setPopup({ open: true, message: "Server is not reachable. Please try again later." });
       }
     }
   };
@@ -74,6 +79,7 @@ export default function Login() {
       <p className={styles.authFooter}>
         Don't have an account? <Link to="/register">Register</Link>
       </p>
+      <Popup open={popup.open} message={popup.message} onClose={() => setPopup({ open: false, message: "" })} />
     </div>
   );
 }

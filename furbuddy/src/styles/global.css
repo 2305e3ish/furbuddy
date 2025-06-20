@@ -12,10 +12,13 @@
   
   /* ========== Body and Typography ========== */
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fffaf5;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #f6e7f7 100%);
     color: #333;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
   }
   
   /* ========== Links ========== */
@@ -34,7 +37,9 @@
   
   /* ========== Headings ========== */
   h1, h2, h3, h4, h5, h6 {
-    color: #333;
+    color: #7b6cf6;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    letter-spacing: 1px;
     margin-bottom: 1rem;
   }
   
@@ -61,6 +66,72 @@
     display: block;
   }
   
+  /* ========== 3D Card and Button Styles ========== */
+  .card-3d {
+    background: linear-gradient(120deg, #f6e7f7 60%, #e0c3fc 100%);
+    border-radius: 22px;
+    box-shadow: 0 8px 24px 0 rgba(123, 108, 246, 0.13), 0 2px 8px 0 rgba(246, 108, 123, 0.10);
+    padding: 24px 18px 18px 18px;
+    border: 1.5px solid #e0c3fc;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .card-3d:hover {
+    box-shadow: 0 16px 40px 0 rgba(123, 108, 246, 0.18), 0 4px 16px 0 rgba(246, 108, 123, 0.13);
+    transform: translateY(-4px) scale(1.03);
+  }
+  
+  .glossy-btn {
+    background: linear-gradient(90deg, #b7b5e3 0%, #7b6cf6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 36px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px 0 rgba(123, 108, 246, 0.13);
+    transition: background 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
+  }
+  .glossy-btn:hover {
+    background: linear-gradient(90deg, #7b6cf6 0%, #b7b5e3 100%);
+    box-shadow: 0 8px 32px 0 rgba(123, 108, 246, 0.18);
+  }
+  
+  input, select, textarea {
+    font-family: inherit;
+  }
+  
+  /* ========== Community Chat Styles ========== */
+  .community-chat-container {
+    background: linear-gradient(120deg, #f6e7f7 60%, #e0c3fc 100%);
+    border-radius: 32px;
+    box-shadow: 0 12px 36px 0 rgba(123, 108, 246, 0.13), 0 2px 8px 0 rgba(246, 108, 123, 0.10);
+    padding: 0;
+  }
+  
+  .chat-messages {
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: linear-gradient(120deg, #f8fafc 60%, #f6e7f7 100%);
+    border-radius: 18px;
+    box-shadow: 0 2px 8px 0 rgba(123, 108, 246, 0.07);
+  }
+  
+  .chat-message {
+    margin-bottom: 18px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 1px 4px 0 rgba(123, 108, 246, 0.07);
+    font-size: 1.08em;
+  }
+  
+  .chat-form .glossy-btn {
+    min-width: 100px;
+  }
+  
   /* ========== Responsive ========== */
   @media (max-width: 768px) {
     .container {
@@ -78,4 +149,37 @@
   }
   #about-us {
     scroll-margin-top: 80px; /* Adjust this value to match your navbar height */
+  }
+  
+  /* ========== Popup Styles ========== */
+  .adopt-popup-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(123, 108, 246, 0.10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .adopt-popup {
+    background: linear-gradient(120deg, #f6e7f7 60%, #e0c3fc 100%);
+    border-radius: 22px;
+    box-shadow: 0 8px 24px 0 rgba(123, 108, 246, 0.13), 0 2px 8px 0 rgba(246, 108, 123, 0.10);
+    padding: 36px 48px 28px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 260px;
+    animation: popIn 0.3s cubic-bezier(.68,-0.55,.27,1.55);
+  }
+  .adopt-popup-msg {
+    color: #7b6cf6;
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-top: 12px;
+    text-align: center;
+  }
+  @keyframes popIn {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
   }

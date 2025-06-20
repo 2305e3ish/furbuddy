@@ -19,8 +19,10 @@ export default function Carousel() {
   }, []);
 
   return (
-    <div className={styles.carousel}>
-      <img src={images[current]} alt={`Slide ${current + 1}`} className={styles.slide} />
+    <div className="card-3d">
+      <div className={styles.carousel}>
+        <img src={images[current]} alt={`Slide ${current + 1}`} className={styles.slide} />
+      </div>
     </div>
   );
 }

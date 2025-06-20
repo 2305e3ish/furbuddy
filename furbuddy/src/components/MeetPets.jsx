@@ -10,17 +10,19 @@ const pets = [
 
 export default function MeetPets() {
   return (
-    <section className={styles.meetPets}>
-      <h2>Meet Our Pets</h2>
-      <div id="meet-pets" className={styles.petGrid}>
-        {pets.map((pet, index) => (
-          <div key={index} className={styles.petCard}>
-            <img src={pet.image} alt={pet.name} />
-            <h3>{pet.name}</h3>
-            <p><strong>Breed:</strong> {pet.breed}</p>
-            <p><strong>Age:</strong> {pet.age}</p>
-          </div>
-        ))}
+    <section id="meet-pets">
+      <div className="card-3d">
+        <h2>Meet Our Pets</h2>
+        <div className={styles.petGrid}>
+          {pets.map((pet, index) => (
+            <div key={index} className={styles.petCard}>
+              <img src={pet.image} alt={pet.name} />
+              <h3>{pet.name}</h3>
+              <p><strong>Breed:</strong> {pet.breed}</p>
+              <p><strong>Age:</strong> {pet.age}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 body {
-  background-color: #fef6f0;
+  background: linear-gradient(135deg, #f8fafc 0%, #f6e7f7 100%);
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
@@ -8,9 +8,11 @@ body {
 h2 {
   text-align: center;
   margin-top: 40px;
-  font-size: 28px;
-  color: #cc5200;
-  font-weight: 600;
+  font-size: 2.2em;
+  color: #7b6cf6;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 8px #e0c3fc;
 }
 
 .donate-form {
@@ -30,7 +32,8 @@ h2 {
 .form-group label {
   margin-bottom: 6px;
   font-weight: 500;
-  color: #cc5200; 
+  color: #7b6cf6;
+  font-size: 1.08em;
 }
 
 .donate-form input[type="text"],
@@ -38,63 +41,41 @@ h2 {
 .donate-form input[type="file"],
 .donate-form select,
 .donate-form textarea {
-  padding: 10px 12px;
-  border: 2px solid #ffa94d;  
-  border-radius: 8px;
-  background-color: #fff9f3;  
-  font-size: 15px;
+  padding: 12px 14px;
+  border: 2px solid #e0c3fc;
+  border-radius: 10px;
+  background: #f8fafc;
+  font-size: 1.08em;
   transition: border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 8px 0 rgba(123, 108, 246, 0.07);
 }
 
 .donate-form input:focus,
 .donate-form select:focus,
 .donate-form textarea:focus {
   outline: none;
-  border-color: #007bff;
-  background-color: #ffffff;
-  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+  border-color: #7b6cf6;
+  background-color: #fff;
+  box-shadow: 0 0 8px 0 #e0c3fc;
 }
 
 .donate-form textarea {
   resize: vertical;
 }
 
-.donate-form button {
-  background-color: #ff7f50;
-  color: white;
-  font-weight: bold;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.form-group.checkbox-group {
+  margin-top: 18px;
+  margin-bottom: 0;
+  background: #f6e7f7;
+  border-radius: 10px;
+  padding: 12px 18px;
+  box-shadow: 0 2px 8px 0 rgba(123, 108, 246, 0.07);
+  border: 1.5px solid #e0c3fc;
 }
 
-.donate-form button:hover {
-  background-color: #e95e28; 
-}
-
-.donate-form input[type="number"] {
-  padding: 10px 12px;
-  border: 2px solid #ffa94d;
-  border-radius: 8px;
-  background-color: #fff9f3;
-  font-size: 15px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.donate-form input[type="number"]:focus {
-  outline: none;
-  border-color: #007bff;
-  background-color: #ffffff;
-  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
-}
-
-/* Required field asterisk */
 .required {
-  color: red;
-  font-weight: bold;
+  color: #e57373;
+  font-size: 1.1em;
 }
 
 /* Popup styles */
@@ -139,4 +120,79 @@ h2 {
 
 .popup button:hover {
   background-color: #e95e28;
+}
+
+.card-form-layout {
+  max-width: 900px;
+  margin: 40px auto 0 auto;
+  padding: 0 24px 32px 24px;
+  background: linear-gradient(120deg, #f6e7f7 60%, #e0c3fc 100%);
+  border-radius: 32px;
+  box-shadow: 0 12px 36px 0 rgba(123, 108, 246, 0.13), 0 2px 8px 0 rgba(246, 108, 123, 0.10);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 2.5px solid #e0c3fc;
+}
+
+.card-form-halves {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.card-form-half {
+  flex: 1;
+  background: linear-gradient(135deg, #f8fafc 60%, #f6e7f7 100%);
+  border-radius: 22px;
+  box-shadow: 0 8px 24px 0 rgba(123, 108, 246, 0.13), 0 2px 8px 0 rgba(246, 108, 123, 0.10);
+  padding: 32px 22px 22px 22px;
+  margin: 32px 0 0 0;
+  min-width: 0;
+  border: 1.5px solid #e0c3fc;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card-form-half:hover {
+  box-shadow: 0 16px 40px 0 rgba(123, 108, 246, 0.18), 0 4px 16px 0 rgba(246, 108, 123, 0.13);
+  transform: translateY(-4px) scale(1.03);
+}
+
+@media (max-width: 900px) {
+  .card-form-halves {
+    flex-direction: column;
+    gap: 0;
+  }
+  .card-form-half {
+    margin: 16px 0 0 0;
+    padding: 18px 8px 12px 8px;
+  }
+}
+
+.submit-btn-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.submit-btn-row button[type="submit"] {
+  background: linear-gradient(90deg, #b7b5e3 0%, #7b6cf6 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 48px;
+  font-size: 1.2em;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px 0 rgba(123, 108, 246, 0.13);
+  transition: background 0.2s, box-shadow 0.2s;
+  letter-spacing: 1px;
+}
+.submit-btn-row button[type="submit"]:hover {
+  background: linear-gradient(90deg, #7b6cf6 0%, #b7b5e3 100%);
+  box-shadow: 0 8px 32px 0 rgba(123, 108, 246, 0.18);
+}
+
+.donate-form {
+  overflow: visible !important;
 }

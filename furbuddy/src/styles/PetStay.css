@@ -68,27 +68,51 @@
 }
 
 .button-box {
-  width: 45%;
+  width: 260px;
+  min-width: 180px;
+  max-width: 260px;
   text-align: center;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 20px;
+  border: 2px solid #e0c3fc;
+  border-radius: 18px;
+  padding: 18px 10px;
+  margin: 0 12px;
+  background: linear-gradient(120deg, #f6e7f7 60%, #e0c3fc 100%);
+  box-shadow: 0 8px 24px 0 rgba(123, 108, 246, 0.13);
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .button-box:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 16px 40px 0 rgba(123, 108, 246, 0.18);
 }
 
 .button-box img {
   width: 100%;
-  height: auto;
+  height: 120px;
+  object-fit: cover;
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-.button-box h2 {
-  margin-top: 10px;
-  font-size: 1.5em;
+.button-box div {
+  font-weight: 600;
+  color: #7b6cf6;
+  font-size: 1.15em;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 4px #e0c3fc;
+  margin-top: 0;
+}
+
+@media (max-width: 700px) {
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .button-box {
+    margin: 12px 0;
+  }
 }

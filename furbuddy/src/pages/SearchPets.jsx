@@ -5,11 +5,15 @@ import '../styles/SearchPets.css';
 const SearchPets = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchField, setSearchField] = useState('all');
-  const [genderFilter, setGenderFilter] = useState('all');
   const [pets, setPets] = useState([]);
   const [filteredPets, setFilteredPets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [requestedPets, setRequestedPets] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMsg, setPopupMsg] = useState('');
+
+  const userEmail = localStorage.getItem('userEmail') || sessionStorage.getItem('userEmail') || 'guest';
 
   const handleFieldChange = (e) => {
     setSearchField(e.target.value);
@@ -33,37 +37,36 @@ const SearchPets = () => {
     fetchPets();
   }, []);
 
+  // Load requested pets for this user from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem(`requestedPets_${userEmail}`);
+    if (saved) setRequestedPets(JSON.parse(saved));
+  }, [userEmail]);
+
   // Debounce search and filter
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       let filtered = pets;
 
-      // Gender filter
-      if (genderFilter !== 'all') {
-        filtered = filtered.filter((pet) =>
-          pet.gender && pet.gender.toLowerCase() === genderFilter
-        );
-      }
-
-      // Search filter
+      // Search filter with prefix matching
       if (searchTerm.trim() !== '') {
         filtered = filtered.filter((pet) => {
           if (searchField === 'all') {
             return (
-              (pet.petType && pet.petType.toLowerCase().includes(searchTerm.toLowerCase())) ||
-              (pet.breed && pet.breed.toLowerCase().includes(searchTerm.toLowerCase())) ||
-              (pet.ownerName && pet.ownerName.toLowerCase().includes(searchTerm.toLowerCase())) ||
-              (pet.mobileNumber && pet.mobileNumber.toLowerCase().includes(searchTerm.toLowerCase())) ||
-              (pet.address && pet.address.toLowerCase().includes(searchTerm.toLowerCase())) ||
-              (pet.gender && pet.gender.toLowerCase().includes(searchTerm.toLowerCase())) ||
-              (pet.age && pet.age.toString().includes(searchTerm))
+              (pet.petType && pet.petType.toLowerCase().startsWith(searchTerm.toLowerCase())) ||
+              (pet.breed && pet.breed.toLowerCase().startsWith(searchTerm.toLowerCase())) ||
+              (pet.ownerName && pet.ownerName.toLowerCase().startsWith(searchTerm.toLowerCase())) ||
+              (pet.mobileNumber && pet.mobileNumber.toLowerCase().startsWith(searchTerm.toLowerCase())) ||
+              (pet.address && pet.address.toLowerCase().startsWith(searchTerm.toLowerCase())) ||
+              (pet.gender && pet.gender.toLowerCase().startsWith(searchTerm.toLowerCase())) ||
+              (pet.age && pet.age.toString().startsWith(searchTerm))
             );
           } else if (searchField === 'age') {
             return pet.age && pet.age.toString() === searchTerm;
           } else {
             return (
               pet[searchField] &&
-              pet[searchField].toString().toLowerCase().includes(searchTerm.toLowerCase())
+              pet[searchField].toString().toLowerCase().startsWith(searchTerm.toLowerCase())
             );
           }
         });
@@ -73,7 +76,16 @@ const SearchPets = () => {
     }, 400);
 
     return () => clearTimeout(delayDebounce);
-  }, [searchTerm, searchField, genderFilter, pets]);
+  }, [searchTerm, searchField, pets]);
+
+  const handleRequestAdopt = (petId) => {
+    const updated = [...requestedPets, petId];
+    setRequestedPets(updated);
+    localStorage.setItem(`requestedPets_${userEmail}`, JSON.stringify(updated));
+    setPopupMsg('Request sent successfully!');
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 1800);
+  };
 
   if (loading) return <div className="search-page"><h1 className="title">🔍 Search for Pets</h1><p>Loading...</p></div>;
   if (error) return <div className="search-page"><h1 className="title">🔍 Search for Pets</h1><p>{error}</p></div>;
@@ -81,8 +93,8 @@ const SearchPets = () => {
   return (
     <div className="search-page">
       <h1 className="title">🔍 Search for Pets</h1>
-      <div className="search-controls">
-        <select value={searchField} onChange={handleFieldChange} className="search-field-select">
+      <div className="glossy-controls">
+        <select value={searchField} onChange={handleFieldChange} className="glossy-select">
           <option value="all">All Fields</option>
           <option value="petType">Type</option>
           <option value="breed">Breed</option>
@@ -94,59 +106,54 @@ const SearchPets = () => {
         </select>
         <input
           type={searchField === 'age' ? 'number' : 'text'}
-          className="search-box"
+          className="glossy-input"
           placeholder={`Search by ${searchField === 'all' ? 'any field' : searchField}...`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <select
-          value={genderFilter}
-          onChange={(e) => setGenderFilter(e.target.value)}
-          className="gender-filter-select"
-          style={{ marginLeft: "10px" }}
-        >
-          <option value="all">All Genders</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
       </div>
       {filteredPets.length > 0 ? (
-        <table className="pet-table">
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Type</th>
-              <th>Breed</th>
-              <th>Owner</th>
-              <th>Mobile</th>
-              <th>Address</th>
-              <th>Gender</th>
-              <th>Age</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredPets.map((pet) => (
-              <tr key={pet.id}>
-                <td>
-                  <img
-                    src={`http://localhost:8080/images/${pet.petImage}`}
-                    alt={pet.breed}
-                    className="pet-img"
-                  />
-                </td>
-                <td>{pet.petType}</td>
-                <td>{pet.breed}</td>
-                <td>{pet.ownerName}</td>
-                <td>{pet.mobileNumber}</td>
-                <td>{pet.address}</td>
-                <td>{pet.gender}</td>
-                <td>{pet.age}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="pet-card-grid">
+          {filteredPets.map((pet) => (
+            <div className="pet-card glossy-card" key={pet.id}>
+              <div className="pet-img-wrap">
+                <img
+                  src={`http://localhost:8080/images/${pet.petImage}`}
+                  alt={pet.breed}
+                  className="pet-img"
+                />
+              </div>
+              <div className="pet-card-details">
+                <div className="pet-type">{pet.petType}</div>
+                <div className="pet-breed">Breed: <span>{pet.breed}</span></div>
+                <div className="pet-owner">Owner: <span>{pet.ownerName}</span></div>
+                <div className="pet-mobile">Mobile: <span>{pet.mobileNumber}</span></div>
+                <div className="pet-address">Address: <span>{pet.address}</span></div>
+                <div className="pet-gender-age">
+                  <span className="pet-gender">{pet.gender}</span>
+                  <span className="pet-age">Age: {pet.age}</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 18 }}>
+                  {requestedPets.includes(pet.id) ? (
+                    <button className="glossy-btn requested-btn" disabled>Requested Pet</button>
+                  ) : (
+                    <button className="glossy-btn" onClick={() => handleRequestAdopt(pet.id)}>Request to Adopt</button>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       ) : (
         <p className="no-results">No pets found.</p>
+      )}
+      {showPopup && (
+        <div className="adopt-popup-overlay">
+          <div className="adopt-popup">
+            <span role="img" aria-label="success" style={{fontSize:'2em'}}>🎉</span>
+            <div className="adopt-popup-msg">{popupMsg}</div>
+          </div>
+        </div>
       )}
     </div>
   );

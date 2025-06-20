@@ -50,27 +50,28 @@ export default function GroupChat() {
   };
 
   return (
-    <div style={{ maxWidth: 600, margin: '40px auto', border: '1px solid #ccc', borderRadius: 8, padding: 16, background: '#fff' }}>
-      <h2>Community Chat</h2>
-      <div style={{ height: 350, overflowY: 'auto', border: '1px solid #eee', padding: 8, marginBottom: 12, background: '#fafafa' }}>
+    <div className="card-3d community-chat-container" style={{ maxWidth: 700, margin: '48px auto', padding: 0 }}>
+      <h2 style={{ textAlign: 'center', margin: '24px 0 12px 0', fontWeight: 700, color: '#7b6cf6', letterSpacing: '1px' }}>Community Chat</h2>
+      <div className="chat-messages glossy-card" style={{ height: 350, overflowY: 'auto', border: 'none', padding: 18, margin: '0 24px 18px 24px', background: 'linear-gradient(120deg, #f8fafc 60%, #f6e7f7 100%)', borderRadius: 18, boxShadow: '0 2px 8px 0 rgba(123, 108, 246, 0.07)' }}>
         {messages.map(msg => (
-          <div key={msg.id} style={{ marginBottom: 10 }}>
-            <b>{msg.user}</b>
+          <div key={msg.id} className="chat-message" style={{ marginBottom: 18, padding: 10, borderRadius: 10, background: '#fff', boxShadow: '0 1px 4px 0 rgba(123, 108, 246, 0.07)' }}>
+            <b style={{ color: '#7b6cf6' }}>{msg.user}</b>
             <span style={{ color: '#888', fontSize: 12, marginLeft: 8 }}>{msg.timestamp ? new Date(msg.timestamp).toLocaleString() : ''}</span>
-            <div>{msg.message}</div>
+            <div style={{ marginTop: 4 }}>{msg.message}</div>
           </div>
         ))}
         <div ref={messagesEndRef} />
       </div>
-      <form onSubmit={sendMessage} style={{ display: 'flex', gap: 8 }}>
+      <form onSubmit={sendMessage} className="chat-form" style={{ display: 'flex', gap: 12, margin: '0 24px 24px 24px' }}>
         <input
           type="text"
           value={input}
           onChange={e => setInput(e.target.value)}
           placeholder="Type your message..."
-          style={{ flex: 1, padding: 8 }}
+          className="glossy-input"
+          style={{ flex: 1, padding: '12px 18px', borderRadius: 12, border: '2px solid #e0c3fc', background: '#f8fafc', fontSize: '1.08em', boxShadow: '0 2px 8px 0 rgba(123, 108, 246, 0.07)' }}
         />
-        <button type="submit" style={{ padding: '8px 16px' }}>Send</button>
+        <button type="submit" className="glossy-btn" style={{ padding: '12px 32px', fontSize: '1.08em' }}>Send</button>
       </form>
     </div>
   );

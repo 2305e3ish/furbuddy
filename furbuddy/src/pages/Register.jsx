@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,6 +11,8 @@ export default function Register() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMsg, setPopupMsg] = useState("");
 
   const onSubmit = async (data) => {
     try {
@@ -18,13 +20,21 @@ export default function Register() {
         "http://localhost:8080/api/users/register",
         data
       );
-      alert(response.data); // Success message
-      navigate("/login"); // Navigate to login page
+      setPopupMsg(response.data);
+      setShowPopup(true);
+      setTimeout(() => {
+        setShowPopup(false);
+        navigate("/login");
+      }, 1800);
     } catch (error) {
       if (error.response && error.response.data) {
-        alert(error.response.data); // Backend error message
+        setPopupMsg(error.response.data);
+        setShowPopup(true);
+        setTimeout(() => setShowPopup(false), 1800);
       } else {
-        alert("An unexpected error occurred. Please try again.");
+        setPopupMsg("An unexpected error occurred. Please try again.");
+        setShowPopup(true);
+        setTimeout(() => setShowPopup(false), 1800);
       }
     }
   };
@@ -115,6 +125,17 @@ export default function Register() {
           Register
         </button>
       </form>
+
+      {showPopup && (
+        <div className="adopt-popup-overlay">
+          <div className="adopt-popup">
+            <span role="img" aria-label="success" style={{ fontSize: "2em" }}>
+              🎉
+            </span>
+            <div className="adopt-popup-msg">{popupMsg}</div>
+          </div>
+        </div>
+      )}
 
       <p className={styles.authFooter}>
         Already have an account? <Link to="/login">Login</Link>

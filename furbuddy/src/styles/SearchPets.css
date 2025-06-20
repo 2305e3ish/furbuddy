@@ -1,65 +1,187 @@
 /* SearchPets.css */
 .search-page {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 40px auto;
-    padding: 20px;
+    padding: 32px 16px 48px 16px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fff9f4;
-    border-radius: 10px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f6e7f7 100%);
+    border-radius: 24px;
+    box-shadow: 0 12px 36px 0 rgba(123, 108, 246, 0.13), 0 2px 8px 0 rgba(246, 108, 123, 0.10);
   }
   
   .title {
     text-align: center;
-    font-size: 32px;
+    font-size: 2.2em;
     margin-bottom: 30px;
-    color: #222;
+    color: #7b6cf6;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 8px #e0c3fc;
   }
   
-  .search-box {
-    display: block;
-    width: 100%;
-    padding: 14px;
-    font-size: 18px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 25px;
-    transition: all 0.3s ease;
+  .glossy-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+    margin-bottom: 32px;
   }
   
-  .search-box:hover {
-    border-color: #f28500;
-    background-color: #fff2e0;
+  .glossy-input, .glossy-select {
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 2px solid #e0c3fc;
+    background: #f8fafc;
+    font-size: 1.08em;
+    box-shadow: 0 2px 8px 0 rgba(123, 108, 246, 0.07);
+    transition: border 0.2s, box-shadow 0.2s;
+  }
+  .glossy-input:focus, .glossy-select:focus {
+    border: 2px solid #7b6cf6;
+    box-shadow: 0 0 8px 0 #e0c3fc;
+    outline: none;
   }
   
-  .pet-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    background-color: #ffffff;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  .pet-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    margin-top: 32px;
   }
   
-  .pet-table th, .pet-table td {
-    padding: 14px 18px;
-    border-bottom: 1px solid #ddd;
+  .pet-card {
+    background: linear-gradient(120deg, #f6e7f7 60%, #e0c3fc 100%);
+    border-radius: 22px;
+    box-shadow: 0 8px 24px 0 rgba(123, 108, 246, 0.13), 0 2px 8px 0 rgba(246, 108, 123, 0.10);
+    padding: 24px 18px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1.5px solid #e0c3fc;
+    transition: box-shadow 0.2s, transform 0.2s;
+    min-width: 0;
+  }
+  .pet-card:hover {
+    box-shadow: 0 16px 40px 0 rgba(123, 108, 246, 0.18), 0 4px 16px 0 rgba(246, 108, 123, 0.13);
+    transform: translateY(-4px) scale(1.03);
   }
   
-  .pet-table th {
-    background-color: #f7f7f7;
-    font-weight: 600;
-    color: #333;
+  .pet-img-wrap {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px 0 rgba(123, 108, 246, 0.10);
   }
   
   .pet-img {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 50%;
+    border: 2px solid #e0c3fc;
+  }
+  
+  .pet-card-details {
+    width: 100%;
+    margin-top: 10px;
+    color: #5a4e6d;
+    font-size: 1.08em;
+    text-align: left;
+  }
+  
+  .pet-type {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #7b6cf6;
+    margin-bottom: 6px;
+  }
+  .pet-breed, .pet-owner, .pet-mobile, .pet-address {
+    margin-bottom: 4px;
+  }
+  .pet-breed span, .pet-owner span, .pet-mobile span, .pet-address span {
+    color: #a03e00;
+    font-weight: 500;
+  }
+  .pet-gender-age {
+    display: flex;
+    gap: 18px;
+    margin-top: 8px;
+  }
+  .pet-gender {
+    color: #7b6cf6;
+    font-weight: 600;
+  }
+  .pet-age {
+    color: #b7b5e3;
+    font-weight: 600;
   }
   
   .no-results {
+    color: #b7b5e3;
+    font-size: 1.2em;
+    margin-top: 32px;
     text-align: center;
-    color: #777;
-    margin-top: 20px;
-    font-size: 18px;
+  }
+  
+  /* 3D Button Style Example (for future use) */
+  .glossy-btn {
+    background: linear-gradient(90deg, #b7b5e3 0%, #7b6cf6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 32px;
+    font-size: 1.08em;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px 0 rgba(123, 108, 246, 0.13);
+    transition: background 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
+  }
+  .glossy-btn:hover:not(:disabled) {
+    background: linear-gradient(90deg, #7b6cf6 0%, #b7b5e3 100%);
+    box-shadow: 0 8px 32px 0 rgba(123, 108, 246, 0.18);
+  }
+  .requested-btn {
+    background: #b7b5e3;
+    color: #fff;
+    cursor: not-allowed;
+    opacity: 0.85;
+    box-shadow: 0 2px 8px 0 rgba(123, 108, 246, 0.10);
+  }
+  
+  .adopt-popup-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(123, 108, 246, 0.10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .adopt-popup {
+    background: linear-gradient(120deg, #f6e7f7 60%, #e0c3fc 100%);
+    border-radius: 22px;
+    box-shadow: 0 8px 24px 0 rgba(123, 108, 246, 0.13), 0 2px 8px 0 rgba(246, 108, 123, 0.10);
+    padding: 36px 48px 28px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 260px;
+    animation: popIn 0.3s cubic-bezier(.68,-0.55,.27,1.55);
+  }
+  .adopt-popup-msg {
+    color: #7b6cf6;
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-top: 12px;
+    text-align: center;
+  }
+  @keyframes popIn {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
   }

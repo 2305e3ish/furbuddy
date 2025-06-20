@@ -64,43 +64,49 @@ const SupportUs = () => {
     <div>
       <h2>Thanks for showing your support</h2>
       <p style={{ textAlign: 'center' }}>Fill out the form below to become a volunteer.</p>
-      <form className="donate-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Full Name <span className="required">*</span></label>
-          <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Phone Number <span className="required">*</span></label>
-          <input
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-            placeholder="10-digit number"
-            maxLength="10"
-          />
-        </div>
-        <div className="form-group">
-          <label>Email ID <span className="required">*</span></label>
-          <input type="text" name="email" value={formData.email} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Address <span className="required">*</span></label>
-          <input type="text" name="address" value={formData.address} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>City <span className="required">*</span></label>
-          <input type="text" name="city" value={formData.city} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>State <span className="required">*</span></label>
-          <select name="state" value={formData.state} onChange={handleChange} required>
-            <option value="">Select a State</option>
-            {indianStates.map((state, index) => (
-              <option key={index} value={state}>{state}</option>
-            ))}
-          </select>
+      <form className="donate-form card-form-layout" onSubmit={handleSubmit}>
+        <div className="card-form-halves">
+          <div className="card-form-half">
+            <div className="form-group">
+              <label>Full Name <span className="required">*</span></label>
+              <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} required />
+            </div>
+            <div className="form-group">
+              <label>Phone Number <span className="required">*</span></label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                placeholder="10-digit number"
+                maxLength="10"
+              />
+            </div>
+            <div className="form-group">
+              <label>Email ID <span className="required">*</span></label>
+              <input type="text" name="email" value={formData.email} onChange={handleChange} required />
+            </div>
+          </div>
+          <div className="card-form-half">
+            <div className="form-group">
+              <label>Address <span className="required">*</span></label>
+              <input type="text" name="address" value={formData.address} onChange={handleChange} required />
+            </div>
+            <div className="form-group">
+              <label>City <span className="required">*</span></label>
+              <input type="text" name="city" value={formData.city} onChange={handleChange} required />
+            </div>
+            <div className="form-group">
+              <label>State <span className="required">*</span></label>
+              <select name="state" value={formData.state} onChange={handleChange} required>
+                <option value="">Select a State</option>
+                {indianStates.map((state, index) => (
+                  <option key={index} value={state}>{state}</option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
         <div className="form-group checkbox-group">
           <label>
@@ -108,7 +114,9 @@ const SupportUs = () => {
             &nbsp; I’ve read and agree to the Terms and Conditions for volunteering this organization. <span className="required">*</span>
           </label>
         </div>
-        <button type="submit">Submit</button>
+        <div className="submit-btn-row">
+          <button type="submit">Submit</button>
+        </div>
       </form>
 
       {showPopup && (
