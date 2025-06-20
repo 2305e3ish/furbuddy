@@ -99,15 +99,15 @@ export default function Register() {
           )}
         </div>
 
-        {/* Landmark */}
+        {/* Address */}
         <div className={styles.formGroup}>
-          <label>Nearest Landmark</label>
+          <label>Address</label>
           <input
             type="text"
-            {...register("landmark", { required: "Landmark is required" })}
+            {...register("address", { required: "Address is required" })}
           />
-          {errors.landmark && (
-            <span className={styles.error}>{errors.landmark.message}</span>
+          {errors.address && (
+            <span className={styles.error}>{errors.address.message}</span>
           )}
         </div>
 
