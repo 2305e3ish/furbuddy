@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.entity.VetHospital;
 import com.service.VetHospitalService;
 @RestController
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/vethospitals")
 public class VetHospitalController {
 @Autowired

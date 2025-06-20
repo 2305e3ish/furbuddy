@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.PetStayRequest;
 import com.repository.PetStayRequestRepository;
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/pet-stay-requests")
 public class PetStayRequestController {

@@ -27,7 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.entity.Pet;
 import com.repository.PetRepository;
 
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/pets")
 public class PetController {

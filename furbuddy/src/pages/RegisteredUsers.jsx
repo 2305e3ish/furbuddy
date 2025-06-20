@@ -6,9 +6,16 @@ const RegisteredUsers = () => {
   const [hosts, setHosts] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/hosts')
-      .then(response => setHosts(response.data))
-      .catch(error => console.error('Error fetching registered users:', error));
+    const fetchHosts = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/hosts');
+        setHosts(response.data);
+      } catch (error) {
+        console.error('Error fetching registered users:', error);
+      }
+    };
+
+    fetchHosts();
   }, []);
 
   return (

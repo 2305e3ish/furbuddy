@@ -24,7 +24,11 @@ export default function Login() {
       alert(response.data);
       navigate("/profile");
     } catch (error) {
-      alert(error.response.data);
+      if (error.response && error.response.data) {
+        alert(error.response.data);
+      } else {
+        alert("Server is not reachable. Please try again later.");
+      }
     }
   };
 

@@ -17,7 +17,6 @@ export default function Header() {
     return () => window.removeEventListener('storage', handleStorage);
   }, []);
 
-  
   useEffect(() => {
     setIsLoggedIn(!!(localStorage.getItem('userEmail') || sessionStorage.getItem('userEmail')));
   }, // eslint-disable-next-line
@@ -40,14 +39,13 @@ export default function Header() {
         {isLoggedIn ? (
           <>
             <Link to="/">Home</Link>
-            <a href="#about-us">About Us</a>
-            <a href="#meet-pets">Meet Pets</a>
             <Link to="/search-pets">Search Pets</Link>
             <Link to="/donate">Donate</Link>
-            <Link to="/hospitals">Pet Hospitals</Link>
-            <Link to="/support-us">Support Us</Link>
+            <Link to="/mate-finder">Mate Finder</Link>
             <Link to="/pet-stay">Pet Stay</Link>
+            <Link to="/hospitals">Pet Hospitals</Link>
             <Link to="/groupchat">Community Chat</Link>
+            <Link to="/support-us">Support Us</Link>
             <button onClick={handleLogout} className={styles.logoutButton} style={{background:'none',border:'none',color:'inherit',cursor:'pointer',padding:0}}>Logout</button>
             <span onClick={() => navigate('/profile')} className={styles.profileCircle} title="Profile" style={{marginLeft:'0.5rem'}}>
               <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#bbb" /></svg>
@@ -56,8 +54,6 @@ export default function Header() {
         ) : (
           <>
             <Link to="/">Home</Link>
-            <a href="#about-us">About Us</a>
-            <a href="#meet-pets">Meet Pets</a>
             <Link to="/support-us">Support Us</Link>
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>

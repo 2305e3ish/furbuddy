@@ -13,6 +13,8 @@ import Register from './pages/Register';
 import PetStay from './pages/PetStay';
 import DaycareCenters from './pages/DaycareCenters';
 import GroupChat from './pages/GroupChat';
+import MateFinder from './pages/MateFinder';
+import RegisteredUsers from './pages/RegisteredUsers';
 import './App.css'; // ensure this is imported for layout styles
 
 export default function App() {
@@ -23,16 +25,18 @@ export default function App() {
         <div className="content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/donate" element={<Donate />} /> 
+            <Route path="/search-pets" element={<SearchPets />} />
+            <Route path="/donate" element={<Donate />} />
+            <Route path="/mate-finder" element={<MateFinder />} />
+            <Route path="/pet-stay" element={<PetStay />} />
+            <Route path="/petstay/daycare" element={<DaycareCenters />} />
+            <Route path="/petstay/registered-users" element={<RegisteredUsers />} />
+            <Route path="/hospitals" element={<Hospitals />} />
+            <Route path="/groupchat" element={<GroupChat />} />
             <Route path="/support-us" element={<SupportUs />} />
             <Route path="/profile" element={<UserProfile />} /> 
-            <Route path="/search-pets" element={<SearchPets />} />
-            <Route path="/hospitals" element={<Hospitals />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/pet-stay" element={<PetStay />} />
-            <Route path="/daycare-centers" element={<DaycareCenters />} />
-            <Route path="/groupchat" element={<GroupChat />} />
           </Routes>
         </div>
         <Footer />
