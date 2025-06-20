@@ -20,17 +20,20 @@
 }
 
 .searchInput {
-  padding: 12px 20px;
-  border-radius: 24px;
-  border: 1.5px solid #e0c3fc;
-  font-size: 1.1em;
-  width: 320px;
-  outline: none;
-  background: #f5f7fa;
-  transition: border 0.2s;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 2px solid #e0c3fc;
+  background: #f8fafc;
+  font-size: 1.08em;
+  box-shadow: 0 2px 8px 0 rgba(123, 108, 246, 0.07);
+  transition: border 0.2s, box-shadow 0.2s;
+  width: 80%;
+  max-width: 400px;
 }
 .searchInput:focus {
-  border: 1.5px solid #b7b5e3;
+  border: 2px solid #7b6cf6;
+  box-shadow: 0 0 8px 0 #e0c3fc;
+  outline: none;
 }
 
 .registered-users-list {

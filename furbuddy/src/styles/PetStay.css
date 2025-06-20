@@ -68,14 +68,14 @@
 }
 
 .button-box {
-  width: 260px;
-  min-width: 180px;
-  max-width: 260px;
+  width: 340px;
+  min-width: 220px;
+  max-width: 340px;
   text-align: center;
   border: 2px solid #e0c3fc;
   border-radius: 18px;
-  padding: 18px 10px;
-  margin: 0 12px;
+  padding: 32px 18px;
+  margin: 0 18px;
   background: linear-gradient(120deg, #f6e7f7 60%, #e0c3fc 100%);
   box-shadow: 0 8px 24px 0 rgba(123, 108, 246, 0.13);
   cursor: pointer;
@@ -92,10 +92,10 @@
 
 .button-box img {
   width: 100%;
-  height: 120px;
+  height: 160px;
   object-fit: cover;
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 .button-box div {

@@ -84,7 +84,7 @@ const RegisteredUsers = () => {
               <div className="registered-user-details">
                 <h3 className="registered-user-name">{host.name}</h3>
                 <div className="registered-user-info">
-                  <span className="info-label">Address:</span> {host.address || 'N/A'}<br />
+                  <span className="info-label">Address:</span> {host.address|| 'N/A'}<br />
                   <span className="info-label">Phone:</span> {host.phone || 'N/A'}<br />
                   <span className="info-label">Email:</span> {host.email || 'N/A'}
                 </div>

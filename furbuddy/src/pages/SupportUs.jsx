@@ -62,8 +62,8 @@ const SupportUs = () => {
 
   return (
     <div>
-      <h2>Thanks for showing your support</h2>
-      <p style={{ textAlign: 'center' }}>Fill out the form below to become a volunteer.</p>
+      <h2>Fill out the form below to become a volunteer</h2>
+    
       <form className="donate-form card-form-layout" onSubmit={handleSubmit}>
         <div className="card-form-halves">
           <div className="card-form-half">

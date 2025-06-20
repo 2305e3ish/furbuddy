@@ -36,7 +36,7 @@ public class PetController {
     private PetRepository petRepository;
 
     // Path for image storage (absolute, no folder duplication)
-    private static final String IMAGE_DIR = "C:\\Users\\yadav\\OneDrive\\Desktop\\furbuddy\\demo\\demo\\src\\main\\resources\\static\\images";
+    private static final String IMAGE_DIR = "C:/Users/sduna/Documents/GitHub/furbuddy/demo/demo/src/main/resources/static/images";
 
     // Show all pets
     @GetMapping

@@ -103,20 +103,19 @@ const MateFinder = () => {
       <h1>🐾 Mate Finder</h1>
       <div className="mate-finder-filters">
         <label>
-          What gender mate do you require?
-          <select value={gender} onChange={e => setGender(e.target.value)} style={{marginLeft:8, marginRight:16}}>
-            <option value="">Any</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
+          Type:
+          <input type="text" value={type} onChange={e => setType(e.target.value)} placeholder="Enter type" style={{marginLeft:8, marginRight:16}} />
         </label>
         <label>
           Breed:
           <input type="text" value={breed} onChange={e => setBreed(e.target.value)} placeholder="Enter breed" style={{marginLeft:8, marginRight:16}} />
         </label>
         <label>
-          Type:
-          <input type="text" value={type} onChange={e => setType(e.target.value)} placeholder="Enter type" style={{marginLeft:8}} />
+          What gender mate do you require?
+          <select value={gender} onChange={e => setGender(e.target.value)} style={{marginLeft:8}}>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
         </label>
       </div>
       {filteredPets.length > 0 ? (

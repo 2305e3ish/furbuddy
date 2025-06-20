@@ -46,7 +46,7 @@ const UserProfile = () => {
     <div className="profile-container">
       <div className="profile-card">
         <div className="profile-pic">
-          <img src="https://via.placeholder.com/150" alt="User Profile" />
+          <img src="/images/anonymous_user.webp" alt="User Profile" />
         </div>
         <h2 className="profile-name">{user.name}</h2>
         <p className="profile-email">{user.email}</p>

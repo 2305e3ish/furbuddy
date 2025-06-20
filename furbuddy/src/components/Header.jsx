@@ -47,8 +47,8 @@ export default function Header() {
             <Link to="/groupchat">Community Chat</Link>
             <Link to="/support-us">Support Us</Link>
             <button onClick={handleLogout} className={styles.logoutButton} style={{background:'none',border:'none',color:'inherit',cursor:'pointer',padding:0}}>Logout</button>
-            <span onClick={() => navigate('/profile')} className={styles.profileCircle} title="Profile" style={{marginLeft:'0.5rem'}}>
-              <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#bbb" /></svg>
+            <span onClick={() => navigate('/profile')} className={styles.profileCircle} title="Profile" style={{marginLeft:'0.5rem', display:'inline-flex', alignItems:'center', justifyContent:'center', width:'36px', height:'36px', borderRadius:'50%', overflow:'hidden', background:'#fff', boxShadow:'0 2px 8px #e0c3fc', cursor:'pointer'}}>
+              <img src="/images/anonymous_user.webp" alt="Profile" style={{width:'32px', height:'32px', objectFit:'cover', borderRadius:'50%'}} />
             </span>
           </>
         ) : (
