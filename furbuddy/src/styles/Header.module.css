@@ -72,6 +72,11 @@
     padding: 0;
   }
   
+  .logoutButton.dark-mode {
+    color: #18122b !important;
+    font-weight: bold;
+  }
+  
   .profileCircle {
     display: inline-flex;
     align-items: center;

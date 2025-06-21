@@ -67,3 +67,8 @@
 .submit-btn:hover {
   background: #5a4e6d;
 }
+
+.pet-stay-request-form.dark-mode {
+  background: #232b23 !important;
+  color: #e0e6f7 !important;
+}

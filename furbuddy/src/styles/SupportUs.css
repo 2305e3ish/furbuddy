@@ -196,3 +196,7 @@ h2 {
 .donate-form {
   overflow: visible !important;
 }
+
+.support-us-form.dark-mode, .support-us-card.dark-mode {
+  background: #232b23 !important;
+}

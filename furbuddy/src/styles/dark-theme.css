@@ -1,0 +1,188 @@
+/* ========== Dark Theme ========== */
+body.dark-mode {
+  /* Deep purple/blue radial background */
+  background: radial-gradient(ellipse at top left, #2d184a 0%, #18122b 60%, #18122b 100%);
+  background-blend-mode: lighten;
+  background-size: cover, 400% 400%;
+  animation: darkMoveBG 18s ease-in-out infinite;
+  color: #e0e6f7;
+  position: relative;
+}
+
+body.dark-mode::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  background: rgba(24, 18, 43, 0.72); /* dark overlay for readability */
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+}
+
+.app-container, .content, #root > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes darkMoveBG {
+  0% { background-position: 0% 50%, 0% 50%; }
+  50% { background-position: 100% 50%, 100% 50%; }
+  100% { background-position: 0% 50%, 0% 50%; }
+}
+
+.card-3d.dark-mode, .glossy-card.dark-mode {
+  /* Glossy purple cards with strong contrast */
+  background: linear-gradient(135deg, #2d184a 60%, #18122b 100%);
+  border: 1.5px solid #6c3fd1;
+  box-shadow: 0 8px 32px 0 rgba(108, 63, 209, 0.18), 0 2px 8px 0 rgba(60, 80, 40, 0.10);
+  color: #e0e6f7;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.card-3d.dark-mode:hover, .glossy-card.dark-mode:hover {
+  box-shadow: 0 16px 40px 0 rgba(108, 63, 209, 0.28), 0 4px 16px 0 rgba(60, 80, 40, 0.18);
+  background: linear-gradient(135deg, #18122b 0%, #6c3fd1 100%);
+}
+
+.glossy-btn.dark-mode {
+  /* Glossy buttons with purple gradient */
+  background: linear-gradient(90deg, #6c3fd1 0%, #2d184a 100%);
+  color: #e0e6f7;
+  box-shadow: 0 4px 16px 0 rgba(108, 63, 209, 0.18);
+  border: 1.5px solid #6c3fd1;
+}
+.glossy-btn.dark-mode:hover {
+  background: linear-gradient(90deg, #2d184a 0%, #6c3fd1 100%);
+}
+
+input.dark-mode, select.dark-mode, textarea.dark-mode {
+  /* Input fields with deep background and purple border */
+  background: #18122b;
+  color: #e0e6f7;
+  border: 2px solid #6c3fd1;
+}
+
+h1.dark-mode, h2.dark-mode, h3.dark-mode, h4.dark-mode, h5.dark-mode, h6.dark-mode {
+  /* Headings with light purple color and shadow */
+  color: #b18fff;
+  text-shadow: 0 2px 8px #2d184a;
+}
+
+.adopt-popup.dark-mode {
+  /* Popup with purple gradient */
+  background: linear-gradient(120deg, #2d184a 60%, #18122b 100%);
+  color: #b18fff;
+  border: 1.5px solid #6c3fd1;
+}
+
+/* Dark mode override for main content area */
+.mate-finder-page.dark-mode, .search-page.dark-mode, .authContainer.dark-mode, .support-us-form.dark-mode, .pet-stay-container.dark-mode {
+  background: linear-gradient(120deg, #2d184a 0%, #18122b 100%) !important;
+  box-shadow: 0 8px 32px 0 rgba(108, 63, 209, 0.18), 0 2px 8px 0 rgba(60, 80, 40, 0.10) !important;
+  color: #e0e6f7 !important;
+}
+
+.mate-finder-filters.dark-mode {
+  background: transparent !important;
+}
+
+/* Remove white backgrounds from cards in dark mode */
+.pet-card.dark-mode, .button-box.dark-mode, .user-card.dark-mode, .support-us-card.dark-mode, .adopt-popup.dark-mode {
+  background: linear-gradient(135deg, #2d184a 60%, #18122b 100%) !important;
+  color: #e0e6f7 !important;
+  border: 1.5px solid #6c3fd1 !important;
+}
+
+/* Remove white from input backgrounds in dark mode */
+input.dark-mode, select.dark-mode, textarea.dark-mode {
+  background: #18122b !important;
+  color: #e0e6f7 !important;
+  border: 2px solid #6c3fd1 !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d184a;
+}
+
+/* Remove all white backgrounds in dark mode */
+.community-chat-container.dark-mode,
+.pet-img-wrap.dark-mode,
+.profile-card.dark-mode,
+.button-box.dark-mode,
+.search-page.dark-mode,
+.pet-card.dark-mode,
+.authContainer.dark-mode,
+.authForm.dark-mode,
+.profile-container.dark-mode,
+.footer.dark-mode,
+nav.dark-mode,
+header.dark-mode,
+form.dark-mode,
+label.dark-mode,
+.no-results.dark-mode {
+  background: transparent !important;
+  color: #e0e6f7 !important;
+}
+
+.pet-img-wrap.dark-mode {
+  background: linear-gradient(135deg, #2d184a 60%, #18122b 100%) !important;
+  border: 2px solid #6c3fd1 !important;
+  box-shadow: 0 2px 8px 0 rgba(108, 63, 209, 0.18) !important;
+}
+
+.chat-message.dark-mode {
+  color: #18122b !important;
+  background: #232946 !important;
+  border: 1px solid #6c3fd1 !important;
+}
+
+form.dark-mode, .authForm.dark-mode, .support-us-form.dark-mode, .donate-form.dark-mode, .mate-modal.dark-mode, .adopt-popup.dark-mode, .pet-stay-request-form.dark-mode {
+  background: linear-gradient(120deg, #2d184a 0%, #18122b 100%) !important;
+  color: #e0e6f7 !important;
+  border: 1.5px solid #6c3fd1 !important;
+  box-shadow: 0 8px 32px 0 rgba(108, 63, 209, 0.18), 0 2px 8px 0 rgba(60, 80, 40, 0.10) !important;
+}
+
+/* Restore clear, visible font and card layout in dark mode */
+.card-3d.dark-mode, .glossy-card.dark-mode, .pet-card.dark-mode, .button-box.dark-mode, .user-card.dark-mode, .support-us-card.dark-mode, .adopt-popup.dark-mode, .mate-modal.dark-mode, .mate-popup.dark-mode, .mate-card.dark-mode, .authForm.dark-mode, .support-us-form.dark-mode, .donate-form.dark-mode, .pet-stay-request-form.dark-mode, .search-page.dark-mode, .mate-finder-page.dark-mode, .profile-card.dark-mode {
+  background: linear-gradient(135deg, #18122b 60%, #232946 100%) !important;
+  color: #f3f6fa !important;
+  border: 2px solid #6c3fd1 !important;
+  box-shadow: 0 4px 16px 0 rgba(60, 40, 100, 0.18), 0 2px 8px 0 rgba(60, 80, 40, 0.10) !important;
+}
+
+body.dark-mode, .dark-mode {
+  color: #f3f6fa !important;
+}
+
+h1.dark-mode, h2.dark-mode, h3.dark-mode, h4.dark-mode, h5.dark-mode, h6.dark-mode {
+  color: #b18fff !important;
+  text-shadow: none !important;
+}
+
+input.dark-mode, select.dark-mode, textarea.dark-mode {
+  background: #232946 !important;
+  color: #f3f6fa !important;
+  border: 2px solid #6c3fd1 !important;
+}
+
+/* Add visible partitions for card layouts */
+.card-3d.dark-mode, .glossy-card.dark-mode, .pet-card.dark-mode {
+  box-shadow: 0 4px 24px 0 rgba(60, 40, 100, 0.22), 0 2px 8px 0 rgba(60, 80, 40, 0.10) !important;
+}
+
+/* Add partition lines between cards if in a grid */
+.pet-card-grid.dark-mode > .pet-card.dark-mode {
+  border-right: 2px solid #2d184a;
+  border-bottom: 2px solid #2d184a;
+}
+
+.logoutButton.dark-mode {
+  color: #18122b !important;
+  font-weight: 600;
+}
+
+.chat-message.dark-mode {
+  color: #18122b !important;
+  background: #232946 !important;
+  border: 1px solid #6c3fd1 !important;
+}

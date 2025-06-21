@@ -130,3 +130,8 @@
   margin-top: 32px;
   text-align: center;
 }
+
+.mate-modal.dark-mode, .mate-popup.dark-mode, .mate-card.dark-mode {
+  background: #232b23 !important;
+  color: #e0e6f7 !important;
+}
