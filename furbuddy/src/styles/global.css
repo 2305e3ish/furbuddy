@@ -1,3 +1,5 @@
+@import url('./dark-theme.css');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@700&family=Pacifico&family=Great+Vibes&display=swap');
 /* ========== Global Reset ========== */
 * {
     margin: 0;
@@ -11,14 +13,45 @@
   }
   
   /* ========== Body and Typography ========== */
-  body {
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  body, .dark-mode {
+    font-family: 'Book Antiqua', 'Palatino Linotype', Palatino, serif !important;
+    font-style: normal;
     background: linear-gradient(135deg, #f8fafc 0%, #f6e7f7 100%);
     color: #333;
     line-height: 1.6;
     margin: 0;
     padding: 0;
     min-height: 100vh;
+  }
+  
+  body {
+    position: relative;
+    background: linear-gradient(135deg, #f8fafc 0%, #f6e7f7 100%);
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    background: rgba(255,255,255,0.55); /* soft white overlay for readability */
+    pointer-events: none;
+    backdrop-filter: blur(2px);
+  }
+  
+  .app-container, .content, #root > * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  body, .dark-mode, h1, h2, h3, h4, h5, h6, .title, .nav a, .logoutButton, .glossy-btn, .profile-name, .pet-type, .pet-breed, .pet-gender, .pet-age, .pet-owner, .pet-mobile, .pet-address, .adopt-popup-msg, .mate-finder-page label, .mate-finder-page select, .mate-finder-page input, .mate-finder-page textarea {
+    font-family: 'Book Antiqua', 'Palatino Linotype', Palatino, serif !important;
+    font-style: normal;
+    font-weight: 1000 !important;
+    letter-spacing: 1.2px;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   /* ========== Links ========== */
@@ -36,15 +69,18 @@
   }
   
   /* ========== Headings ========== */
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6, .title {
     color: #7b6cf6;
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-    letter-spacing: 1px;
+    font-family: 'Pacifico', 'Great Vibes', 'Playfair Display', 'Montserrat', 'Segoe UI', serif !important;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
     margin-bottom: 1rem;
+    font-style: normal;
   }
   
   /* ========== Buttons ========== */
-  button {
+  button, .glossy-btn {
     background-color: #ff7a59;
     color: #fff;
     border: none;
@@ -53,10 +89,31 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s ease;
+    font-family: 'Pacifico', 'Great Vibes', 'Playfair Display', 'Montserrat', serif !important;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 8px rgba(108,63,209,0.12);
   }
   
   button:hover {
     background-color: #e65c3f;
+  }
+  
+  .glossy-btn {
+    background: linear-gradient(90deg, #b7b5e3 0%, #7b6cf6 100%);
+    padding: 12px 36px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px 0 rgba(123, 108, 246, 0.13);
+    transition: background 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
+    font-family: 'Pacifico', 'Great Vibes', 'Playfair Display', 'Montserrat', serif !important;
+    font-style: normal;
+  }
+  .glossy-btn:hover {
+    background: linear-gradient(90deg, #7b6cf6 0%, #b7b5e3 100%);
+    box-shadow: 0 8px 32px 0 rgba(123, 108, 246, 0.18);
   }
   
   /* ========== Images ========== */
@@ -78,24 +135,6 @@
   .card-3d:hover {
     box-shadow: 0 16px 40px 0 rgba(123, 108, 246, 0.18), 0 4px 16px 0 rgba(246, 108, 123, 0.13);
     transform: translateY(-4px) scale(1.03);
-  }
-  
-  .glossy-btn {
-    background: linear-gradient(90deg, #b7b5e3 0%, #7b6cf6 100%);
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    padding: 12px 36px;
-    font-size: 1.1em;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 16px 0 rgba(123, 108, 246, 0.13);
-    transition: background 0.2s, box-shadow 0.2s;
-    letter-spacing: 1px;
-  }
-  .glossy-btn:hover {
-    background: linear-gradient(90deg, #7b6cf6 0%, #b7b5e3 100%);
-    box-shadow: 0 8px 32px 0 rgba(123, 108, 246, 0.18);
   }
   
   input, select, textarea {
@@ -178,8 +217,24 @@
     font-weight: 600;
     margin-top: 12px;
     text-align: center;
+    font-family: 'Orbitron', 'Montserrat', 'Segoe UI', sans-serif !important;
   }
   @keyframes popIn {
     0% { transform: scale(0.7); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
+  }
+  
+  .pet-img-wrap {
+    background: #232b23 !important;
+  }
+  .logoutButton, .logoutButton.dark-mode {
+    font-family: Arial, sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px;
+  }
+  .glossy-btn, .glossy-btn.dark-mode, .title, h1, h2, h3, h4, h5, h6, .search-page .title {
+    font-family: 'Book Antiqua', 'Palatino Linotype', Palatino, serif !important;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 1.1px;
   }

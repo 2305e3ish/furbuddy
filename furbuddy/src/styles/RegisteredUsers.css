@@ -166,3 +166,8 @@
 .registered-user-modal-content button:hover {
   background: #0056b3;
 }
+
+.user-card.dark-mode, .user-details.dark-mode {
+  background: #232b23 !important;
+  color: #e0e6f7 !important;
+}
