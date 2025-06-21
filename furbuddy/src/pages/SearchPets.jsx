@@ -78,13 +78,20 @@ const SearchPets = () => {
     return () => clearTimeout(delayDebounce);
   }, [searchTerm, searchField, pets]);
 
-  const handleRequestAdopt = (petId) => {
-    const updated = [...requestedPets, petId];
-    setRequestedPets(updated);
-    localStorage.setItem(`requestedPets_${userEmail}`, JSON.stringify(updated));
-    setPopupMsg('Request sent successfully!');
-    setShowPopup(true);
-    setTimeout(() => setShowPopup(false), 1800);
+  const handleRequestAdopt = async (petId) => {
+    try {
+      await axios.post('http://localhost:8080/api/pets/adopt-request', null, { params: { petId } });
+      const updated = [...requestedPets, petId];
+      setRequestedPets(updated);
+      localStorage.setItem(`requestedPets_${userEmail}`, JSON.stringify(updated));
+      setPopupMsg('Request sent successfully! Email sent to pet owner.');
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 1800);
+    } catch (err) {
+      setPopupMsg('Failed to send adoption request.');
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 1800);
+    }
   };
 
   if (loading) return <div className="search-page"><h1 className="title">🔍 Search for Pets</h1><p>Loading...</p></div>;

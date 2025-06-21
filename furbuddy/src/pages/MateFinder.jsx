@@ -79,20 +79,42 @@ const MateFinder = () => {
     setMateForm({ ...mateForm, [e.target.name]: e.target.value });
   };
 
-  const handleMateFormSubmit = (e) => {
+  const handleMateFormSubmit = async (e) => {
     e.preventDefault();
-    setShowModal(false);
-    setPopupMsg('Mate request sent successfully!');
-    setShowPopup(true);
-    setTimeout(() => setShowPopup(false), 1800);
-    setMateForm({ yourPetType: '', yourPetBreed: '', numDays: '', action: '', message: '' });
-    // Save requested pet for this user
-    const email = getUserEmail();
-    if (email && selectedPet) {
-      const updated = [...requestedPets, selectedPet.id];
-      setRequestedPets(updated);
-      localStorage.setItem(`mateRequests_${email}`, JSON.stringify(updated));
+    if (!selectedPet || !selectedPet.email) {
+      setPopupMsg('Pet owner email not found.');
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 1800);
+      setShowModal(false);
+      return;
     }
+    try {
+      const details = `Mate request for your pet (${selectedPet.petType}, ${selectedPet.breed})\n` +
+        `From: ${mateForm.yourPetType} (${mateForm.yourPetBreed})\n` +
+        `Days: ${mateForm.numDays}\n` +
+        `Action: ${mateForm.action === 'give' ? 'Give Pet' : 'Take Pet'}\n` +
+        `Message: ${mateForm.message}`;
+      await axios.post('http://localhost:8080/api/users/mate-request', details, {
+        params: { toEmail: selectedPet.email },
+        headers: { 'Content-Type': 'text/plain' }
+      });
+      setPopupMsg('Mate request sent successfully! Email sent to pet owner.');
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 1800);
+      setMateForm({ yourPetType: '', yourPetBreed: '', numDays: '', action: '', message: '' });
+      // Save requested pet for this user
+      const email = getUserEmail();
+      if (email && selectedPet) {
+        const updated = [...requestedPets, selectedPet.id];
+        setRequestedPets(updated);
+        localStorage.setItem(`mateRequests_${email}`, JSON.stringify(updated));
+      }
+    } catch (err) {
+      setPopupMsg('Failed to send mate request.');
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 1800);
+    }
+    setShowModal(false);
   };
 
   if (loading) return <div className="mate-finder-page"><h1>🐾 Mate Finder</h1><p>Loading...</p></div>;
@@ -171,24 +193,28 @@ const MateFinder = () => {
                   name="yourPetType"
                   value={mateForm.yourPetType}
                   onChange={handleMateFormChange}
-                  placeholder="Your Pet's Type"
-                  style={{width:'100%',padding:'10px',borderRadius:8,border:'1.5px solid #e0c3fc',marginBottom:8}}
+                  placeholder="Your Pet Type"
+                  style={{width:'100%',padding:'10px',borderRadius:8,border:'1.5px solid #e0c3fc'}}
                   required
                 />
+              </div>
+              <div style={{marginBottom:10}}>
                 <input
                   type="text"
                   name="yourPetBreed"
                   value={mateForm.yourPetBreed}
                   onChange={handleMateFormChange}
-                  placeholder="Your Pet's Breed"
-                  style={{width:'100%',padding:'10px',borderRadius:8,border:'1.5px solid #e0c3fc',marginBottom:8}}
+                  placeholder="Your Pet Breed"
+                  style={{width:'100%',padding:'10px',borderRadius:8,border:'1.5px solid #e0c3fc'}}
                   required
                 />
+              </div>
+              <div style={{marginBottom:10}}>
                 <select
                   name="numDays"
                   value={mateForm.numDays}
                   onChange={handleMateFormChange}
-                  style={{width:'100%',padding:'10px',borderRadius:8,border:'1.5px solid #e0c3fc',marginBottom:8}}
+                  style={{width:'100%',padding:'10px',borderRadius:8,border:'1.5px solid #e0c3fc'}}
                   required
                 >
                   <option value="">Number of Days</option>
@@ -197,7 +223,9 @@ const MateFinder = () => {
                   <option value="8-14">8-14 days</option>
                   <option value="15+">15+ days</option>
                 </select>
-                <div style={{marginBottom:8, display:'flex', gap:16, alignItems:'center'}}>
+              </div>
+              <div style={{marginBottom:10, display:'flex', gap:16}}>
+                <div style={{flex:1}}>
                   <input
                     type="radio"
                     id="givePet"
@@ -206,8 +234,11 @@ const MateFinder = () => {
                     checked={mateForm.action === 'give'}
                     onChange={handleMateFormChange}
                     required
+                    style={{marginRight:8}}
                   />
-                  <label htmlFor="givePet" style={{marginRight:12, fontWeight:500, color:'#7b6cf6', cursor:'pointer'}}>Give Pet</label>
+                  <label htmlFor="givePet" style={{fontWeight:500, color:'#7b6cf6', cursor:'pointer'}}>Give Pet</label>
+                </div>
+                <div style={{flex:1}}>
                   <input
                     type="radio"
                     id="takePet"
@@ -215,9 +246,12 @@ const MateFinder = () => {
                     value="take"
                     checked={mateForm.action === 'take'}
                     onChange={handleMateFormChange}
+                    style={{marginRight:8}}
                   />
                   <label htmlFor="takePet" style={{fontWeight:500, color:'#7b6cf6', cursor:'pointer'}}>Take Pet</label>
                 </div>
+              </div>
+              <div style={{marginBottom:10}}>
                 <textarea
                   name="message"
                   value={mateForm.message}

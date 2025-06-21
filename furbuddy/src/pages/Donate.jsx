@@ -8,10 +8,11 @@ const Donate = () => {
     mobileNumber: '',
     address: '',
     petType: '',
-    breed: '', // changed from petBreed
+    breed: '',
     petImage: null,
     age: '',
-    gender: '', // Add gender field
+    gender: '',
+    email: '', // new field
   });
   const [selectedFileName, setSelectedFileName] = useState('');
   const [showPopup, setShowPopup] = useState(false);
@@ -40,6 +41,7 @@ const Donate = () => {
       data.append('age', formData.age);
       data.append('gender', formData.gender);
       data.append('petImage', formData.petImage);
+      data.append('email', formData.email); // send email
 
       await axios.post('http://localhost:8080/api/pets', data, {
         headers: { 'Content-Type': 'multipart/form-data' }
@@ -56,6 +58,7 @@ const Donate = () => {
         petImage: null,
         age: '',
         gender: '',
+        email: '', // reset email
       });
       setSelectedFileName('');
     } catch (error) {
@@ -120,6 +123,10 @@ const Donate = () => {
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
+            </div>
+            <div className="form-group">
+              <label>Email *</label>
+              <input type="email" name="email" required onChange={handleChange} value={formData.email} />
             </div>
           </div>
         </div>

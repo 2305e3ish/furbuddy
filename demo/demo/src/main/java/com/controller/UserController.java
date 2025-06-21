@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.User;
 import com.repository.UserRepository;
+import com.service.EmailService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3001")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -28,6 +29,9 @@ public class UserController {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private EmailService emailService;
 
     @GetMapping
     public List<User> getAllUsers() {
@@ -72,5 +76,14 @@ public class UserController {
             }
         }
         return ResponseEntity.ok("All users without an address have been updated.");
+    }
+
+    @PostMapping("/mate-request")
+    public ResponseEntity<?> sendMateRequest(@RequestParam String toEmail, @RequestBody String details) {
+        if (toEmail == null || toEmail.isEmpty()) {
+            return ResponseEntity.badRequest().body("Owner email required");
+        }
+        emailService.sendMateRequestEmail(toEmail, details);
+        return ResponseEntity.ok("Mate request email sent");
     }
 }

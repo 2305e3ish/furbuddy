@@ -14,13 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.PetStayRequest;
 import com.repository.PetStayRequestRepository;
-@CrossOrigin(origins = "http://localhost:3000")
+import com.service.EmailService;
+@CrossOrigin(origins = "http://localhost:3001")
 @RestController
 @RequestMapping("/api/pet-stay-requests")
 public class PetStayRequestController {
 
     @Autowired
     private PetStayRequestRepository petStayRequestRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     @GetMapping
     public List<PetStayRequest> getAllRequests() {
@@ -29,7 +33,17 @@ public class PetStayRequestController {
 
     @PostMapping
     public PetStayRequest requestStay(@RequestBody PetStayRequest petStayRequest) {
-        return petStayRequestRepository.save(petStayRequest);
+        PetStayRequest savedRequest = petStayRequestRepository.save(petStayRequest);
+        // Send email to the user (host) for pet stay request
+        if (petStayRequest.getOwner() != null && petStayRequest.getOwner().getEmail() != null) {
+            String details = "A new pet stay request has been submitted.\n" +
+                "Start Date: " + petStayRequest.getStartDate() + "\n" +
+                "End Date: " + petStayRequest.getEndDate() + "\n" +
+                "Messages: " + petStayRequest.getMessages() + "\n" +
+                "Stay Type: " + petStayRequest.getStayType();
+            emailService.sendPetStayRequestEmail(petStayRequest.getOwner().getEmail(), details);
+        }
+        return savedRequest;
     }
 
     @GetMapping("/filter")

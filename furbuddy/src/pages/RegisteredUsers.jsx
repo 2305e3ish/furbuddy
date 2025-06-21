@@ -48,10 +48,11 @@ const RegisteredUsers = () => {
         startDate: form.stayFrom,
         endDate: form.stayTo,
         messages: form.specialInstructions,
-        petName: form.petName,
-        petType: form.petType,
-        hostUserId: selectedUser.id,
-        hostUserName: selectedUser.name
+        pet: {
+          name: form.petName,
+          petType: form.petType
+        },
+        owner: selectedUser // pass the full user object as owner
       };
       await axios.post('http://localhost:8080/api/pet-stay-requests', payload);
       alert(`Pet stay request sent to ${selectedUser.name}!`);

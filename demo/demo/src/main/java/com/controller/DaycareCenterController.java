@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.entity.DaycareCenter;
 import com.repository.DaycareCenterRepository;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3001")
 @RestController
 @RequestMapping("/api/daycare-centers")
 public class DaycareCenterController {

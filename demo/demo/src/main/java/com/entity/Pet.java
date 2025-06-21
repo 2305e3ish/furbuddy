@@ -35,6 +35,8 @@ public class Pet {
 
     private String gender; // Add this field
 
+    private String email; // Add this field
+
     public Long getId() {
         return id;
     }
@@ -113,5 +115,13 @@ public class Pet {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

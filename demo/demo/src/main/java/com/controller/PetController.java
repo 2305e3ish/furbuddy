@@ -3,7 +3,6 @@ package com.controller;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +25,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.entity.Pet;
 import com.repository.PetRepository;
+import com.service.EmailService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3001")
 @RestController
 @RequestMapping("/api/pets")
 public class PetController {
@@ -35,8 +35,11 @@ public class PetController {
     @Autowired
     private PetRepository petRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     // Path for image storage (absolute, no folder duplication)
-    private static final String IMAGE_DIR = "C:/Users/sduna/Documents/GitHub/furbuddy/demo/demo/src/main/resources/static/images";
+    private static final String IMAGE_DIR = "C:/Users/ishan/OneDrive/Documents/furbuddy/demo/demo/src/main/resources/static/images";
 
     // Show all pets
     @GetMapping
@@ -53,8 +56,9 @@ public class PetController {
         @RequestParam String petType,
         @RequestParam String breed,
         @RequestParam int age,
-        @RequestParam String gender, // Add this parameter
-        @RequestParam MultipartFile petImage
+        @RequestParam String gender,
+        @RequestParam MultipartFile petImage,
+        @RequestParam String email // new field
     ) {
         Pet pet = new Pet();
         pet.setOwnerName(ownerName);
@@ -63,13 +67,14 @@ public class PetController {
         pet.setPetType(petType);
         pet.setBreed(breed);
         pet.setAge(age);
-        pet.setGender(gender); // Set gender
+        pet.setGender(gender);
+        pet.setEmail(email); // set email
         String fileName = petImage.getOriginalFilename();
         if (fileName == null || fileName.trim().isEmpty()) {
             throw new RuntimeException("No image file provided");
         }
         try {
-            Path imagesDir = Paths.get(IMAGE_DIR);
+            Path imagesDir = Path.of(IMAGE_DIR);
             if (!Files.exists(imagesDir)) {
                 Files.createDirectories(imagesDir);
             }
@@ -92,7 +97,10 @@ public class PetController {
             System.out.println("Saved image: " + imagePath.toAbsolutePath() + ", size: " + petImage.getSize());
 
             pet.setPetImage(fileName);
-            return ResponseEntity.ok(petRepository.save(pet));
+            Pet savedPet = petRepository.save(pet);
+            // Send donation confirmation email
+            emailService.sendDonationConfirmation(email, pet.getName() != null ? pet.getName() : "your pet");
+            return ResponseEntity.ok(savedPet);
         } catch (java.nio.file.FileAlreadyExistsException e) {
             throw new RuntimeException("File already exists: " + fileName, e);
         } catch (java.io.IOException e) {
@@ -150,6 +158,7 @@ public class PetController {
             pet.setAddress(updatedPet.getAddress());
             pet.setPetType(updatedPet.getPetType());
             pet.setPetImage(updatedPet.getPetImage());
+            pet.setEmail(updatedPet.getEmail()); // update email
             return petRepository.save(pet);
         }).orElseGet(() -> {
             updatedPet.setId(id);
@@ -159,7 +168,7 @@ public class PetController {
 
     @GetMapping("/images/{filename:.+}")
     public ResponseEntity<Resource> getImage(@PathVariable String filename) throws IOException {
-        Path imagePath = Paths.get(IMAGE_DIR).resolve(filename);
+        Path imagePath = Path.of(IMAGE_DIR).resolve(filename);
         Resource resource = new UrlResource(imagePath.toUri());
         if (resource.exists() || resource.isReadable()) {
             return ResponseEntity.ok()
@@ -168,5 +177,16 @@ public class PetController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    // Request to adopt a pet
+    @PostMapping("/adopt-request")
+    public ResponseEntity<?> requestAdopt(@RequestParam Long petId) {
+        Pet pet = petRepository.findById(petId).orElse(null);
+        if (pet == null || pet.getEmail() == null) {
+            return ResponseEntity.badRequest().body("Pet or owner email not found");
+        }
+        emailService.sendAdoptionRequestEmail(pet.getEmail(), pet.getName() != null ? pet.getName() : "your pet");
+        return ResponseEntity.ok("Adoption request email sent to pet owner");
     }
 }
