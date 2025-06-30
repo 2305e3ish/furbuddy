@@ -29,10 +29,36 @@
     font-family: 'Segoe UI', sans-serif;
   }
   
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border: 2px solid #ff7a59;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1100;
+    box-shadow: 0 2px 8px #e0c3fc;
+  }
+  
+  .bar {
+    width: 30px;
+    height: 5px;
+    background: #ff7a59;
+    margin: 5px 0;
+    border-radius: 3px;
+    transition: 0.3s;
+    box-shadow: 0 1px 2px #e0c3fc;
+  }
+  
   .nav {
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    transition: all 0.3s;
   }
   
   .nav a {
@@ -94,14 +120,49 @@
     box-shadow: 0 0 0 2px #888;
   }
   
-  @media (max-width: 768px) {
-    .nav {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.8rem;
-    }
-  
+  @media (max-width: 900px) {
     .title {
       font-size: 1.2rem;
+    }
+    .nav {
+      gap: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+    }
+    .nav {
+      position: absolute;
+      top: 70px;
+      right: 0;
+      left: 0;
+      background: #fff;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 1rem 2rem;
+      box-shadow: 0 8px 24px 0 rgba(123, 108, 246, 0.13);
+      transform: translateY(-200%);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+      z-index: 1050;
+    }
+    .nav.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .nav a, .logoutButton, .profileCircle {
+      width: 100%;
+      padding: 1rem 0;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      margin: 0;
+    }
+    .profileCircle {
+      justify-content: flex-start;
     }
   }
